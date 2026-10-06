@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 
 const app = express();
@@ -5,10 +7,12 @@ const app = express();
 app.use(express.json());
 
 const requestsRouter = require("./routes/requests");
+const authRouter = require("./routes/auth");
 
 app.use("/requests", requestsRouter);
+app.use("/auth", authRouter);
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use((err, req, res, next) => {
   console.error(err);

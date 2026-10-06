@@ -8,6 +8,7 @@ const {
   updateRequest,
   deleteRequest,
 } = require("../controllers/requestsController");
+const { auth, isAdmin } = require("../middleware/auth");
 
 router.get("/", getAllRequests);
 
@@ -17,6 +18,6 @@ router.post("/", createRequest);
 
 router.put("/:id", updateRequest);
 
-router.delete("/:id", deleteRequest);
+router.delete("/:id", auth, isAdmin, deleteRequest);
 
 module.exports = router;
