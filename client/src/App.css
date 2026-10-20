@@ -1,0 +1,120 @@
+.request-list {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.request-list h1 {
+  font-size: 24px;
+  margin: 0 0 20px;
+  color: #101828;
+}
+
+.form-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 9px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.toolbar select {
+  padding: 6px 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.stats {
+  color: #667085;
+  font-size: 13px;
+}
+
+.request-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.request-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.request-item .edit-input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.request-info {
+  flex: 1;
+}
+
+.request-location {
+  color: #667085;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.badge-new {
+  background: #fee4e2;
+  color: #b42318;
+}
+
+.badge-in_progress {
+  background: #fef0c7;
+  color: #b54708;
+}
+
+.badge-completed {
+  background: #d1fadf;
+  color: #067647;
+}
+
+.request-item button {
+  padding: 7px 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.request-item button:hover {
+  background: #f2f4f7;
+}
+
+.empty {
+  color: #667085;
+  text-align: center;
+}
