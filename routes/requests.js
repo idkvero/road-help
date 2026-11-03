@@ -8,7 +8,9 @@ const {
   updateRequest,
   deleteRequest,
 } = require("../controllers/requestsController");
-const { auth, isAdmin } = require("../middleware/auth");
+const { auth } = require("../middleware/auth");
+
+router.use(auth);
 
 router.get("/", getAllRequests);
 
@@ -18,6 +20,6 @@ router.post("/", createRequest);
 
 router.put("/:id", updateRequest);
 
-router.delete("/:id", auth, isAdmin, deleteRequest);
+router.delete("/:id", deleteRequest);
 
 module.exports = router;

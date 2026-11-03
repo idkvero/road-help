@@ -2,9 +2,8 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Request extends Model {
-    
     static associate(models) {
-      // define association here
+      Request.belongsTo(models.User, { foreignKey: "userId" });
     }
   }
   Request.init(
@@ -13,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       location: DataTypes.STRING,
       status: DataTypes.STRING,
       phone: DataTypes.STRING,
+      userId: DataTypes.INTEGER,
     },
     {
       sequelize,
