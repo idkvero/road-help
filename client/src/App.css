@@ -625,7 +625,147 @@
   padding: var(--s-1);
 }
 
+.modal--chat {
+  max-width: 640px;
+  max-height: min(80vh, 720px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat__subtitle {
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+
+.chat__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  margin-right: var(--s-3);
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+.chat__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--ink-muted);
+}
+
+.chat__dot--on {
+  background: var(--success);
+}
+
+.chat__list {
+  flex: 1;
+  min-height: 240px;
+  overflow-y: auto;
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.chat__empty {
+  padding: var(--s-5) 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+}
+
+.chat__msg {
+  max-width: 85%;
+  padding: var(--s-3);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-1);
+}
+
+.chat__msg--own {
+  margin-left: auto;
+  background: var(--info-soft);
+  border-color: var(--info-line);
+}
+
+.chat__msg--system {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: var(--s-1) 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  text-align: center;
+}
+
+.chat__msg--system .chat__author {
+  justify-content: center;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.chat__msg--system .chat__text {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+
+.chat__author {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: 2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.chat__time {
+  font-weight: 400;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.chat__text {
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+}
+
+.chat__typing {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+.chat__error {
+  padding: 0 var(--s-5) var(--s-3);
+}
+
+.chat__form {
+  display: flex;
+  gap: var(--s-2);
+  padding: var(--s-4) var(--s-5);
+}
+
+.chat__form .input {
+  flex: 1;
+}
+
 @media (max-width: 720px) {
+  .modal--chat {
+    max-height: 90vh;
+  }
+
+  .chat__form {
+    flex-direction: column;
+  }
+
   .input,
   .select {
     font-size: 1rem;

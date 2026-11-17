@@ -6,12 +6,29 @@ import {
   updateRequest,
 } from "./api";
 import LoginForm from "./LoginForm";
+import ChatPanel from "./ChatPanel";
 import "./App.css";
 
 const STATUS_LABELS = {
   new: "Новая",
   in_progress: "В работе",
   completed: "Выполнена",
+};
+
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:3002";
+
+const notifyStatus = async ({ requestId, status, changedBy }) => {
+  try {
+    await fetch(`${SOCKET_URL}/api/notify/status`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ requestId: String(requestId), status, changedBy }),
+    });
+  } catch {
+    return null;
+  }
+
+  return true;
 };
 
 const decodeToken = (token) => {
@@ -74,6 +91,7 @@ function RequestList() {
   const [role, setRole] = useState(readRole());
   const [loginOpen, setLoginOpen] = useState(false);
   const [composerOpen, setComposerOpen] = useState(false);
+  const [chatRequest, setChatRequest] = useState(null);
   const [creating, setCreating] = useState(false);
   const [toasts, setToasts] = useState([]);
 
@@ -249,6 +267,11 @@ function RequestList() {
         status: nextStatus,
       });
       pushToast(`Статус: ${STATUS_LABELS[nextStatus]}`);
+      notifyStatus({
+        requestId: request.id,
+        status: STATUS_LABELS[nextStatus],
+        changedBy: email || "диспетчер",
+      });
     } catch (err) {
       setRequests((prev) =>
         prev.map((r) =>
@@ -560,6 +583,13 @@ function RequestList() {
                         <div className="card__actions">
                           <button
                             className="btn btn--quiet btn--sm"
+                            onClick={() => setChatRequest(r)}
+                            aria-label={`Открыть чат по заявке ${r.id}`}
+                          >
+                            Чат
+                          </button>
+                          <button
+                            className="btn btn--quiet btn--sm"
                             onClick={() => startEdit(r)}
                             aria-label={`Изменить заявку ${r.id}`}
                           >
@@ -670,6 +700,14 @@ function RequestList() {
             <LoginForm onLogin={handleLogin} />
           </section>
         </div>
+      )}
+
+      {chatRequest && (
+        <ChatPanel
+          requestId={chatRequest.id}
+          user={email || "Гость"}
+          onClose={() => setChatRequest(null)}
+        />
       )}
 
       {toasts.length > 0 && (
