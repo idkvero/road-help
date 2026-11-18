@@ -1,0 +1,66 @@
+<%- include("partials/header") %>
+
+<p class="back"><a class="link" href="/">← Ко всем заявкам</a></p>
+
+<h1>Новая заявка</h1>
+
+<% if (errors.length > 0) { %>
+  <div class="errors">
+    <p class="errors__title">Заявка не создана:</p>
+    <ul>
+      <% errors.forEach((error) => { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+<form class="form" method="post" action="/add">
+  <label class="field">
+    <span class="field__label">Что случилось</span>
+    <input
+      class="input"
+      type="text"
+      name="description"
+      value="<%= values.description || '' %>"
+      placeholder="Например: не заводится автомобиль"
+    />
+  </label>
+
+  <label class="field">
+    <span class="field__label">Где вы находитесь</span>
+    <input
+      class="input"
+      type="text"
+      name="location"
+      value="<%= values.location || '' %>"
+      placeholder="Город, улица, ориентир"
+    />
+  </label>
+
+  <label class="field">
+    <span class="field__label">Статус</span>
+    <select class="input" name="status">
+      <% statuses.forEach((status) => { %>
+        <option value="<%= status %>" <%= values.status === status ? "selected" : "" %>>
+          <%= statusLabels[status] %>
+        </option>
+      <% }); %>
+    </select>
+  </label>
+
+  <label class="field">
+    <span class="field__label">Телефон</span>
+    <input
+      class="input"
+      type="text"
+      name="phone"
+      value="<%= values.phone || '' %>"
+      placeholder="+375 29 000-00-00"
+    />
+  </label>
+
+  <button class="button" type="submit">Создать заявку</button>
+</form>
+
+<%- include("partials/footer") %>

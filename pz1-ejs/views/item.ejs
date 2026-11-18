@@ -1,0 +1,36 @@
+<%- include("partials/header") %>
+
+<p class="back"><a class="link" href="/">← Ко всем заявкам</a></p>
+
+<h1>Заявка № <%= request.id %></h1>
+
+<article class="card">
+  <div class="card__row">
+    <span class="card__label">Статус</span>
+    <span class="badge badge--<%= request.status %>">
+      <%= statusLabels[request.status] || request.status %>
+    </span>
+  </div>
+
+  <div class="card__row">
+    <span class="card__label">Описание</span>
+    <span><%= request.description %></span>
+  </div>
+
+  <div class="card__row">
+    <span class="card__label">Адрес</span>
+    <span><%= request.location %></span>
+  </div>
+
+  <div class="card__row">
+    <span class="card__label">Телефон</span>
+    <span><%= request.phone || "не указан" %></span>
+  </div>
+
+  <div class="card__row">
+    <span class="card__label">Создана</span>
+    <span><%= request.createdAt.toLocaleString("ru-RU") %></span>
+  </div>
+</article>
+
+<%- include("partials/footer") %>

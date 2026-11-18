@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">Road Help · ПЗ1</a>
+
+      <nav class="nav">
+        <a href="/">Заявки</a>
+        <a href="/add">Новая заявка</a>
+
+        <% if (user.role === "guest") { %>
+          <a class="nav__auth" href="/?auth=1">Войти</a>
+          <span class="nav__user">Гость</span>
+        <% } else { %>
+          <span class="nav__user"><%= user.name %></span>
+          <a class="nav__auth" href="/?auth=0">Выйти</a>
+        <% } %>
+      </nav>
+    </header>
+
+    <main class="container">

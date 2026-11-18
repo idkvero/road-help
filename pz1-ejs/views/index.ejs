@@ -1,0 +1,61 @@
+<%- include("partials/header") %>
+
+<h1>Заявки на помощь на дорогах</h1>
+
+<section class="stats">
+  <div class="stat">
+    <span class="stat__label">Всего</span>
+    <span class="stat__value"><%= stats.total %></span>
+  </div>
+  <div class="stat">
+    <span class="stat__label">Новые</span>
+    <span class="stat__value stat__value--new"><%= stats.new %></span>
+  </div>
+  <div class="stat">
+    <span class="stat__label">В работе</span>
+    <span class="stat__value stat__value--progress"><%= stats.inProgress %></span>
+  </div>
+  <div class="stat">
+    <span class="stat__label">Выполнены</span>
+    <span class="stat__value stat__value--done"><%= stats.completed %></span>
+  </div>
+</section>
+
+<% if (requests.length === 0) { %>
+  <p class="empty">Заявок пока нет. <a href="/add">Создайте первую</a>.</p>
+<% } else { %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Описание</th>
+        <th>Адрес</th>
+        <th>Статус</th>
+        <th>Создана</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% requests.forEach((request) => { %>
+        <tr>
+          <td><%= request.id %></td>
+          <td><%= request.description %></td>
+          <td><%= request.location %></td>
+          <td>
+            <span class="badge badge--<%= request.status %>">
+              <%= statusLabels[request.status] || request.status %>
+            </span>
+          </td>
+          <td><%= request.createdAt.toLocaleDateString("ru-RU") %></td>
+          <td><a class="link" href="/item/<%= request.id %>">Подробнее</a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } %>
+
+<p class="actions">
+  <a class="button" href="/add">Новая заявка</a>
+</p>
+
+<%- include("partials/footer") %>
